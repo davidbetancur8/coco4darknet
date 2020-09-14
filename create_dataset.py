@@ -117,7 +117,7 @@ with open(f"{save_train_path}/{save_train_path}.names", "w") as f:
     f.write(coco_names) 
 
 
-filein = open( 'yolov4.cfg' )
+filein = open( 'yolov4_template.cfg' )
 src = Template( filein.read() )
 
 n_classes = len(categories)
