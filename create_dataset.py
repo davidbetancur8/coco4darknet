@@ -6,16 +6,17 @@ from string import Template
 import random
 
 
-save_train_path = "coco_prueba"
+save_train_path = "coco_person_suitcase"
 annotations_path = './instances_train2017.json'
-categories = ["person"]
+categories = ["person", "suitcase"]
 #n_images for each class plus n_images for all classes
-n_images = 10
+n_img = 8000
 
 # Dict of mapping of ids where the key is the original coco id and the value
 # is the new one such as the final classes are from 0 to nclasses.
 dict_ids = {
     1: 0,
+    33:1
 }
 
 
@@ -43,7 +44,13 @@ def download_data(categories):
     i = 0
     cont = 0
     new_images = []
-    while cont < n_images:
+    if len(images) < n_img:
+    	n_images = len(images)-1
+    else:
+    	n_images = n_img
+    print(n_images, len(images))
+    while (cont < n_images) & (i < len(images)):
+
         if (images[i]["file_name"] not in existing_images):
             new_images.append(images[i])
             cont += 1
@@ -77,10 +84,12 @@ def download_data(categories):
 
 # images with all labels
 download_data(categories)
-# images with unique label
+images with unique label
 for cat in categories:
     download_data([cat])
 
+
+# download_data(categories[0])
 
 existing_images = os.listdir(save_path)
 
