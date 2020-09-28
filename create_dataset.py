@@ -10,7 +10,7 @@ save_train_path = "coco_person_suitcase"
 annotations_path = './instances_train2017.json'
 categories = ["person", "suitcase"]
 #n_images for each class plus n_images for all classes
-n_img = 8000
+n_img = 4000
 
 # Dict of mapping of ids where the key is the original coco id and the value
 # is the new one such as the final classes are from 0 to nclasses.
@@ -55,6 +55,7 @@ def download_data(categories):
             new_images.append(images[i])
             cont += 1
         i += 1
+
     for im in new_images:
         print(im['coco_url'])
         try:
@@ -84,7 +85,7 @@ def download_data(categories):
 
 # images with all labels
 download_data(categories)
-images with unique label
+# images with unique label
 for cat in categories:
     download_data([cat])
 
@@ -97,8 +98,8 @@ paths = [save_path + p for p in os.listdir(save_path) if ".jpg" in p]
 
 random.shuffle(paths)
 
-train_data = paths[:int(len(paths)*0.8)]
-test_data = paths[int(len(paths)*0.8):]
+train_data = paths[:int(len(paths)*0.9)]
+test_data = paths[int(len(paths)*0.9):]
 
 
 with open(save_train_path + '/train.txt', 'w') as f:
