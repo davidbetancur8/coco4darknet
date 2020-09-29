@@ -57,6 +57,7 @@ def download_data(categories):
         i += 1
     
     img_count = 0
+    print(f"{len(new_images)} ready to download for {categories[0]} class")
     for im in new_images:
         try:
             img_data = requests.get(im['coco_url'], timeout=5).content
@@ -87,7 +88,7 @@ def download_data(categories):
 
 
 # images with all labels
-download_data(categories)
+# download_data(categories)
 # images with unique label
 for cat in categories:
     download_data([cat])
