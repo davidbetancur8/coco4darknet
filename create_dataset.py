@@ -62,7 +62,7 @@ def download_data(categories):
             img_data = requests.get(im['coco_url'], timeout=5).content
             if img_count % 100 == 0:
                 print(img_count)
-            count += 1
+            img_count += 1
         except Exception as e:
             print(e)
             continue
