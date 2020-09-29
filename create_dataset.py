@@ -55,11 +55,14 @@ def download_data(categories):
             new_images.append(images[i])
             cont += 1
         i += 1
-
+    
+    img_count = 0
     for im in new_images:
-        print(im['coco_url'])
         try:
             img_data = requests.get(im['coco_url'], timeout=5).content
+            if img_count % 100 == 0:
+                print(img_count)
+            count += 1
         except Exception as e:
             print(e)
             continue
